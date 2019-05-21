@@ -6,6 +6,8 @@ import numpy as np
 import dlib
 import cv2
 
+file_index = 0
+
 
 def create_camera_configuration():
     image_size = (640, 480)
@@ -98,7 +100,10 @@ def main(callback):
 
             # Send the landmark information to the 
             # specified callback function
-            callback(merged)
+            # callback(merged)
+
+            # Export landmarks to .lm3
+            export(merged)
 
         # Show the image
         cv2.imshow("Output", image)
@@ -111,8 +116,16 @@ def main(callback):
     cap.release()
 
 
-def test(data):
-    print(data)
+def export(data):
+    file_name = file_index + ".lm3"
+    file = open(file_name, "w")
+
+    for entry in data:
+        output = " ".join([str(v) for v in entry])
+        file.write(output)
+
+    file.close()
+    file_index += 1
 
 
 if __name__ == "__main__":
