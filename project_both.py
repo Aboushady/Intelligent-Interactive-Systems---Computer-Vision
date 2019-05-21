@@ -72,14 +72,30 @@ def main(callback):
 
         # For each face
         for (i, rect) in enumerate(rects):
+            x1, y1, x2, y2 = rect.left(), rect.top(), rect.right(), rect.bottom()
+            minn = np.min(depth_image[depth_image > 0])
+            maxx = minn + 100
+            
+            # --- For RGB image ---
             # Find landmarks
             shape = predictor(gray, rect)
             # Convert to numpy array
             shape = face_utils.shape_to_np(shape)
             # Extract only the 22 landmarks we are interested in
             shape = get_new_shape(shape)
-            # Array to hold depth value for each landmark pixel
-            depth_array = np.zeros(len(shape))
+            
+            # --- For depth image, work in progress! ---
+            # Find landmarks
+            shape = predictor(gray, rect)
+            # Convert to numpy array
+            shape = face_utils.shape_to_np(shape)
+            # Extract only the 22 landmarks we are interested in
+            shape = get_new_shape(shape)
+            
+            depth_image -= minn
+            depth_image /= maxx
+            depth_image = (depth_image * 255)
+            depth_image = depth_image.astype(np.uint8)
 
             # For each landmark
             for i, (x, y) in enumerate(shape):

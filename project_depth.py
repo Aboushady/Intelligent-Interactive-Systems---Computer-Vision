@@ -66,12 +66,31 @@ def main(callback):
 
         # Convert image to gray scale
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
+        
         # Get all faces
         rects = detector(gray, 0)
 
         # For each face
         for (i, rect) in enumerate(rects):
+            x1, y1, x2, y2 = rect.left(), rect.top(), rect.right(), rect.bottom()
+            
+            #depth_image2 = depth_image[x1:x2, y1:y2].copy()
+            
+            
+            minn = np.min(depth_image[depth_image > 0])
+            maxx = minn + 100
+            
+            #print("Min:", np.min(depth_image2[depth_image2 > 0]))
+            #print("Max:", np.max(depth_image2[:]))
+            print("Min:", minn)
+            print("Max:", maxx)
+            
+            depth_image -= minn
+            depth_image /= maxx
+            depth_image = (depth_image * 255)
+            depth_image = depth_image.astype(np.uint8)
+            gray = depth_image
+
             # Find landmarks
             shape = predictor(gray, rect)
             # Convert to numpy array
@@ -84,7 +103,7 @@ def main(callback):
             # For each landmark
             for i, (x, y) in enumerate(shape):
                 # Draw small circle around it on the image
-                cv2.circle(image, (x, y), 2, (0, 255, 0), -1)
+                cv2.circle(depth_image, (x, y), 2, (0, 255, 0), -1)
                 # Save the landmark's depth information
                 depth_array[i] = depth_image[x, y]
 
@@ -103,11 +122,11 @@ def main(callback):
             callback(merged)
 
             # Export landmarks to .lm3
-            export(merged, file_index)
+            #export(merged, file_index)
             file_index += 1
     
         # Show the image
-        cv2.imshow("Output", image)
+        cv2.imshow("Output", depth_image)
 
         k = cv2.waitKey(5) & 0xFF
         if k == 27:
@@ -132,7 +151,7 @@ def export(data, file_index):
 
 
 def test(data):
-    print(data)
+    #print(data)
     print()
 
 
