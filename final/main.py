@@ -41,7 +41,7 @@ def main():
         # If a face was found, predict its emotions (ML group)
         # and present them using NAO and IrisTK (ES group)
         if landmarks is not None:
-            emotions = ml_group.predict_emotions(landmarks)
+            emotions, confidence = ml_group.predict_emotions(landmarks)
             es_group.present_emotions(emotions)
         
         # This shows the image with the landmarks painted onto it
