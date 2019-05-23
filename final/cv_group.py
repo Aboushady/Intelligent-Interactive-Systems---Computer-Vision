@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 
 import numpy as np
 import cv2
@@ -51,7 +51,7 @@ class FaceLandmarksFinder(object):
             # Apparently, dlib returns landmark coordinates outside 
             # the image sometimes, then we just set depth to 0, 
             # since we don't have depth values for such coordinates.
-            depth_array = np.array([depth_image[x, y] 
+            depth_array = np.array([depth_image[y, x] 
                                     if x < img_w and y < img_h else 0 
                                     for x, y in shape])
             # Normalize depth array to 0-255 values

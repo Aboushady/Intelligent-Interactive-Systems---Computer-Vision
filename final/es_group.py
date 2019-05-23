@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 
 def present_emotions(emotions):
-    print("Presenting emotions...")
+    #print("Presenting emotions...")
+    pass
