@@ -1,0 +1,28 @@
+Frame count: 851
+Time elapsed: 105.81987738609314
+Mean of each landmark:
+
+Outer left eyebrow       22.141917986965552
+Middle left eyebrow      31.307745997336045
+Inner left eyebrow       29.662517945671983
+Inner right eyebrow      32.11673791094652
+Middle right eyebrow     37.12133386737494
+Outer right eyebrow      28.670505501558186
+Outer left eye corner    18.733554396191998
+Inner left eye corner    17.74659343664457
+Inner right eye corner   20.541488278021134
+Outer right eye corner   25.50801306098382
+Nose saddle left         27.755777630645397
+Nose saddle right        29.09528523720989
+Left nose peak           22.98915447588596
+Nose tip                 26.22291773774349
+Right nose peak          22.34264078296732
+Left mouth corner        20.17952322764394
+Upper lip outer middle   20.547057563350094
+Right mouth corner       22.535723533183106
+Upper lip inner middle   21.0215064722064
+Lower lip inner middle   22.521662360327078
+Lower lip outer middle   23.785651343349112
+Chin middle              27.121484394035512
+
+Total mean of the means of each landmark: 24.984945142738276
